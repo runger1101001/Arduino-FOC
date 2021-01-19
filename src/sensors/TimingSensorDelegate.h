@@ -20,6 +20,31 @@
  * factor to how quickly you can call loopFOC() and move(), and therefore how fast you can spin
  * the motor, or how smoothly it spins when spinning slowly. It can also have an effect on
  * noise produced by the motor, and obtainable torque.
+ *
+ * Usage:
+ *
+ * #include <TimingSensorDelegate.h>
+ * #define TIMING_PIN 33
+ *
+ * ...
+ *
+ *  MagneticSensorI2C sensor = MagneticSensorI2C(0x40, 14, 0xFE, 8); // your real sensor, this is an example
+ *  TimingSensorDelegate timedSensor(sensor, TIMING_PIN);
+ *
+ * ...
+ *
+ *	timedSensor.init(); 				// puts timer pin in output mode
+ *	sensor.init();      				// don't forget to init the real sensor too
+ *	motor.linkSensor(&timedSensor);		// but link the timed sensor
+ *
+ * ...
+ *
+ *
+ *
+ *
+ * Now you can sit back and watch the timings in your oscilloscope or logic analyzer.
+ *
+ *
  */
 class TimingSensorDelegate : public Sensor {
 public:
@@ -33,7 +58,7 @@ public:
 
     void init();
 
-	virtual ~TimingSensorDelegate();
+	virtual ~TimingSensorDelegate() {};
 private:
 	Sensor& delegate;
 	int timingPin;
