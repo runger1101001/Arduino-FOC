@@ -46,6 +46,9 @@
  *
  *
  */
+
+#include "common/base_classes/Sensor.h"
+
 class TimingSensorDelegate : public Sensor {
 public:
 	TimingSensorDelegate(Sensor &wrapped, int pin=-1) : delegate(wrapped), timingPin(pin) {};
