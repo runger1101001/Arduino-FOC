@@ -18,9 +18,9 @@ float Sensor::updateSensor() {
  /** get current angular velocity (rad/s)*/
 float Sensor::getVelocity() {
     // calculate sample time
-    float Ts = (angle_prev_ts - vel_angle_prev_ts)*1e-6;
+    float Ts = (angle_prev_ts - vel_angle_prev_ts)*1e-6f;
     // quick fix for strange cases (micros overflow)
-    if(Ts <= 0 || Ts > 0.5) Ts = 1e-3;
+    if(Ts <= 0 || Ts > 0.5f) Ts = 1e-3f;
     // velocity calculation
     float vel = ( (full_rotations - vel_full_rotations)*_2PI + (angle_prev - vel_angle_prev) ) / Ts;    
     // save variables for future pass
