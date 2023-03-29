@@ -543,10 +543,6 @@ void BLDCMotor::setPhaseVoltage(float Uq, float Ud, float angle_el) {
     case FOCModulationType::SinePWM :
       // Sinusoidal PWM modulation
       // Inverse Park + Clarke transformation
-
-      // angle normalization in between 0 and 2pi
-      // only necessary if using _sin and _cos - approximation functions
-      angle_el = _normalizeAngle(angle_el);
       _ca = _cos(angle_el);
       _sa = _sin(angle_el);
       // Inverse park transform
